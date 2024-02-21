@@ -1,0 +1,81 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an empty queue
+        Queue<Integer> queue = new LinkedList<>();
+
+        // Add elements to the queue
+        queue.add(10);
+        queue.add(20);
+        queue.add(30);
+        queue.add(40);
+        queue.add(50);
+        queue.add(60);
+        queue.add(70);
+        queue.add(80);
+        queue.add(90);
+
+        // Print size of the queue
+        System.out.println("Size of the queue: " + queue.size());
+
+        // Demonstrate q.poll()
+        System.out.println("\nDemonstrating q.poll():");
+        System.out.println("q.poll(): " + queue.poll()); // returns and removes the head of the queue
+        System.out.println("Queue after poll: " + queue); // Queue with one element removed
+
+        // Demonstrate q.remove()
+        try {
+            System.out.println("\nDemonstrating q.remove():");
+            System.out.println("q.remove(): " + queue.remove()); // Removes and returns the head of the queue
+        } catch (Exception e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+        
+        // Demonstrate both q.poll() and q.remove()
+        System.out.println("\nDemonstrating both q.poll() and q.remove():");
+        System.out.println("q.poll(): " + queue.poll()); // returns and removes the head of the queue
+        try {
+            System.out.println("q.remove(): " + queue.remove()); // Removes and returns the head of the queue
+        } catch (Exception e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+
+        // Print the queue before reversing
+        System.out.println("\nQueue before reversing: " + queue);
+
+        // Reverse the queue
+        reverseQueue(queue);
+
+        // Print the queue after reversing
+        System.out.println("Queue after reversing: " + queue);
+
+        // Demonstrating Boolean form by creating an object for queue class
+        System.out.println("\nDemonstrating Boolean form by creating an object for queue class:");
+        MyQueue myQueue = new MyQueue();
+        System.out.println("Is queue empty? " + myQueue.isEmpty());
+    }
+
+    // Helper method to reverse the queue using a stack
+    public static void reverseQueue(Queue<Integer> queue) {
+        Stack<Integer> stack = new Stack<>();
+        while (!queue.isEmpty()) {
+            stack.push(queue.poll());
+        }
+        while (!stack.isEmpty()) {
+            queue.add(stack.pop());
+        }
+    }
+}
+
+class MyQueue {
+    private Queue<Integer> queue;
+
+    public MyQueue() {
+        queue = new LinkedList<>();
+    }
+
+    public boolean isEmpty() {
+        return queue.isEmpty();
+    }
+}
